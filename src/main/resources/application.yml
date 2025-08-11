@@ -1,0 +1,22 @@
+server:
+  port:
+    8007
+
+spring:
+  audit:
+    console:
+      enabled: true
+    file:
+      enabled: true
+    kafka:
+      enabled: true
+      topic:
+        name: application-logs-topic
+  kafka:
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        enable.idempotence: true
+    bootstrap-servers: localhost:8090
+
