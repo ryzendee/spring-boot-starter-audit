@@ -1,0 +1,10 @@
+spring:
+  kafka:
+    consumer:
+      auto-offset-reset: earliest
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: ryzendee.starter.audit.model
+      group-id: application-logs-group
