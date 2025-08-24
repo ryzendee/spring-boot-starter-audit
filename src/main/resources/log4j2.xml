@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Appenders>
+        <Console name="ConsoleAppender" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %msg%n"/>
+        </Console>
+
+        <RollingFile name="FileAppender"
+                     fileName="logs/audit.log"
+                     filePattern="logs/archive/audit-%d{yyyy-MM-dd-HH-mm}-%i.log.gz">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %msg%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="1MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="ConsoleLogger" level="debug" additivity="false">
+            <AppenderRef ref="ConsoleAppender"/>
+        </Logger>
+
+        <Logger name="FileLogger" level="debug" additivity="false">
+            <AppenderRef ref="FileAppender"/>
+        </Logger>
+
+        <Root level="info">
+            <AppenderRef ref="ConsoleAppender"/>
+        </Root>
+    </Loggers>
+</Configuration>
